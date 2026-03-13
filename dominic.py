@@ -2,9 +2,11 @@ import requests
 import os
 import argparse
 import pyfiglet
-print("")
-print("")
+import colorama
 
+#----banner
+print("")
+print("")
 print(pyfiglet.figlet_format(text="dominic",font="smblock"),end="")
 print("domain status check")
 parser = argparse.ArgumentParser()
@@ -12,6 +14,8 @@ parser.add_argument("-d", "--domain", required=True, help="wordlist path")
 args = parser.parse_args()
 
 
+
+#----logic
 if not os.path.exists(args.domain):
     print(f"[!] '{args.domain}' not found.")
     exit()
@@ -32,16 +36,20 @@ with open(args.domain, "r") as domains:
         try:
          response = requests.get(url, timeout=5, headers=headers)
          if response.ok:
-            active_urls.append(f"{url} - {response.status_code}")
+            active_urls.append(f"[:] {url} - {response.status_code}")
          else:
-            nonactive.append(f"{url} - {response.status_code}")
+            nonactive.append(f"[!] {url} - {response.status_code}")
         except:
-           nonactive.append(f"{url} - FAILED/TIMEOUT")
-#results
+           nonactive.append(f"[!] {url} - FAILED/TIMEOUT")
+
+#----results
 for x in active_urls:
    print(x)
+   
 for y in nonactive:
    print(y)
+
+print("="*50)
 
            
 
