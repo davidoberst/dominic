@@ -40,7 +40,7 @@ with open(args.domain, "r") as domains:
          else:
             nonactive.append(f"[!] {url} -> [{response.status_code}]")
         except:
-           nonactive.append(f"[!] {url} -> [404 - Failed Timeout]")
+           nonactive.append(f"[!] {url} -> [404]")
 
 #----results
 for x in active_urls:
@@ -50,10 +50,6 @@ for y in nonactive:
    print(Fore.RED + y + Style.RESET_ALL)
 
 print("="*75)
-for x in domains:
-   x += 1
-   print(f"[INFO] {x} domains scanned")
-   break
 
            
 
