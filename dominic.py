@@ -2,7 +2,7 @@ import requests
 import os
 import argparse
 import pyfiglet
-import colorama
+from colorama import Style,Fore
 
 #----banner
 print("")
@@ -26,7 +26,7 @@ active_urls = []
 nonactive = []
 with open(args.domain, "r") as domains:
     print("="*50)
-    print("[INFO] Requesting domains...")
+    print(f"{Fore.LIGHTBLUE_EX + "[INFO]" + Style.RESET_ALL + " Requesting domains..."}")
     print("="*50)
     for line in domains:
         url = line.strip()
@@ -44,10 +44,10 @@ with open(args.domain, "r") as domains:
 
 #----results
 for x in active_urls:
-   print(x)
+   print(Fore.LIGHTGREEN_EX + x + Style.RESET_ALL)
    
 for y in nonactive:
-   print(y)
+   print(Fore.RED + y + Style.RESET_ALL)
 
 print("="*50)
 
